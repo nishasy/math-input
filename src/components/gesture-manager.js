@@ -176,6 +176,34 @@ class GestureManager {
     }
 
     /**
+     * Handle an enter or space key press that originated from the node
+     * registered with the gesture system.
+     *
+     * @param {KeyboardEvent} evt
+     */
+    onKeyUp(evt) {
+        if (evt.key === 'Enter' || evt.key === ' ') {
+            // Simulate clicking the button or component
+            this.gestureStateMachine.handlers.onTrigger(evt.target.id);
+            evt.preventDefault();
+        }
+    }
+
+    /**
+     * Handle click originating from the node.
+     * This onClick function was specifically added to support the
+     * screenreader-specific button press.
+     *
+     * @param {*} evt
+     */
+    onClick(evt, role) {
+        if (role == 'button') {
+            // Simulate clicking the button or component
+            this.gestureStateMachine.handlers.onTrigger(evt.target.id);
+        }
+    }
+
+    /**
      * Register a DOM node with a given identifier.
      *
      * @param {string} id - the identifier of the given node

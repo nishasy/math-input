@@ -43,10 +43,13 @@ class KeypadButton extends React.PureComponent {
         focused: PropTypes.bool,
         heightPx: PropTypes.number.isRequired,
         icon: iconPropType,
+        id: PropTypes.string,
         onTouchCancel: PropTypes.func,
         onTouchEnd: PropTypes.func,
         onTouchMove: PropTypes.func,
         onTouchStart: PropTypes.func,
+        onKeyUp: PropTypes.func,
+        onClick: PropTypes.func,
         popoverEnabled: PropTypes.bool,
         style: PropTypes.any,
         type: PropTypes.oneOf(Object.keys(KeyTypes)).isRequired,
@@ -182,10 +185,13 @@ class KeypadButton extends React.PureComponent {
             disabled,
             focused,
             icon,
+            id,
             onTouchCancel,
             onTouchEnd,
             onTouchMove,
             onTouchStart,
+            onKeyUp,
+            onClick,
             popoverEnabled,
             style,
             type,
@@ -203,7 +209,7 @@ class KeypadButton extends React.PureComponent {
         ];
 
         const eventHandlers = {
-            onTouchCancel, onTouchEnd, onTouchMove, onTouchStart,
+            onTouchCancel, onTouchEnd, onTouchMove, onTouchStart, onKeyUp, onClick,
         };
 
         const maybeFocusBox = renderFocused && <View style={focusStyle} />;
@@ -216,6 +222,7 @@ class KeypadButton extends React.PureComponent {
             // TODO(charlie): Make the long-press interaction accessible. See
             // the TODO in key-configs.js for more.
             const manyButtonA11yMarkup = {
+                id: id,
                 role: 'button',
                 ariaLabel: childKeys[0].ariaLabel,
                 tabIndex: 0
@@ -236,6 +243,7 @@ class KeypadButton extends React.PureComponent {
             </View>;
         } else {
             const a11yMarkup = {
+                id: id,
                 role: 'button',
                 ariaLabel: ariaLabel,
                 tabIndex: 0

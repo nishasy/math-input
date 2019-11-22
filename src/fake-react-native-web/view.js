@@ -20,12 +20,14 @@ class View extends React.Component {
         // disable some externally-applied CSS that would otherwise be far too
         // difficult to override with inline styles.)
         extraClassName: PropTypes.string,
+        id: PropTypes.string,
         numberOfLines: PropTypes.number,
         onClick: PropTypes.func,
         onTouchCancel: PropTypes.func,
         onTouchEnd: PropTypes.func,
         onTouchMove: PropTypes.func,
         onTouchStart: PropTypes.func,
+        onKeyUp: PropTypes.func,
         role: PropTypes.string,
         style: PropTypes.any,
         tabIndex: PropTypes.number,
@@ -68,12 +70,14 @@ class View extends React.Component {
 
         return <div
             className={className}
+            id={this.props.id}
             style={this.props.dynamicStyle}
             onClick={this.props.onClick}
             onTouchCancel={this.props.onTouchCancel}
             onTouchEnd={this.props.onTouchEnd}
             onTouchMove={this.props.onTouchMove}
             onTouchStart={this.props.onTouchStart}
+            onKeyUp={this.props.onKeyUp}
             aria-label={this.props.ariaLabel}
             role={this.props.role}
             tabIndex={this.props.tabIndex}
