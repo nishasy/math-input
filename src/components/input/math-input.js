@@ -660,6 +660,14 @@ class MathInput extends React.Component {
         this._updateCursorHandle(true);
     };
 
+    onKeyUp = (evt) => {
+        if (evt.key === 'Enter' || evt.key === ' ') {
+            // Bring up keypad when enter or space is pressed inside keypad
+            this.focus();
+            evt.preventDefault();
+        }
+    }
+
     render() {
         const {focused, handle} = this.state;
         const {style} = this.props;
@@ -704,9 +712,11 @@ class MathInput extends React.Component {
             onTouchStart={this.handleTouchStart}
             onTouchMove={this.handleTouchMove}
             onTouchEnd={this.handleTouchEnd}
+            onKeyUp={this.onKeyUp}
             onClick={e => e.stopPropagation()}
             role={'textbox'}
             ariaLabel={i18n._('Math input box')}
+            tabIndex={0}
         >
             {/* NOTE(charlie): This is used purely to namespace the styles in
                 overrides.css. */}
