@@ -2,6 +2,8 @@
  * Constants that are shared between multiple files.
  */
 
+const i18n = window.i18n || {_: s => s};
+
 module.exports = {
     KeypadTypes: {
         FRACTION: 'FRACTION',
@@ -70,4 +72,8 @@ module.exports = {
         FADE_ONLY: 'FADE_ONLY',
         LONG_FADE_ONLY: 'LONG_FADE_ONLY',
     },
+
+    strings: {
+        MATH_INPUT_BOX_DESCRIPTION: i18n._('Press enter to activate math input keyboard.'),
+    }
 };
